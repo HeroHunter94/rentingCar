@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--INPUTS
+Una empresa que trabaja con vehículos desea calcular las necesidades de combustible (cantidad de combustible necesario para llenar los depósitos de todos sus vehículos). 
+Para ello nos han facilitado los siguientes datos (el número de vehículos puede variar con lo cual deberá leerse por INPUTS):
+
+Número de Vehículos Turísticos: valor por defecto, 30.              Capacidad del depósito: constante 40
+Número de Vehículos Todo Terreno: valor por defecto, 10.        Capacidad del depósito: constante 60
+Tomando en cuenta que la capacidad del depósito de cada tipo de vehículo es constante, Se desea crear un programa que muestre por  consola la necesidad total de combustible actual de la siguiente manera: 
+‘La necesidad de combustible de los vehículos turísticos es de x y la de los vehículos todo terreno es de y, para un total de x+y’-->
+
+<head>
+    <title>Oil calculator</title>
+    <link rel = "stylesheet" href = "style.css">
+</head>
+
+<body>
+    <h1>Deposit Oil Calculator</h1>
+    <label for="inputTourist">Enter the amounts of Tourist car available: </label>
+    <input type="number" id="inputTourist" value = "30" min = "0" required>
+    <br><br>
+    <label for="inputTransport">Enter the amounts of Trasport car available: </label>
+    <input type="number" id="inputTransport" value ="10" min ="0" required>
+
+    <button onclick="OilCalculator()">Calculator of oil</button>
+    <p id="output"></p>
+
+    <script>
+        const CAPACITYTOURIST = 40;
+        const CAPACITYTRANSPORT = 60;
+        const INPUTTOU = document.getElementById("inputTourist");
+        const INPUTTRA = document.getElementById("inputTransport");
+
+        function OilCalculator() {
+            let inputTourist = Number(INPUTTOU.value);
+            let inputTransport = Number(INPUTTRA.value);
+            let totalTou  = inputTourist * CAPACITYTOURIST;
+            let totalTra = inputTransport * CAPACITYTRANSPORT;
+
+            if(isNaN(inputTourist) || isNaN(inputTransport) || inputTransport < 0 || inputTourist < 0){
+                document.getElementById("output").innerHTML = "Please enter an integer value bigger than 0";
+            } else {
+                let output = `<p>This the total amounts of oil needed for the tourist vehicles is:${totalTou.toFixed(2)} liters<br> While the total amounts of oild needed for the transport vehicles is ${totalTra.toFixed(2)} liters and the sum of both is: ${(totalTou+ totalTra).toFixed(2)} liters</p>`;
+                document.getElementById("output").innerHTML = output;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
